@@ -78,7 +78,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "dev": "node_modules/.bin/webpack-dev-server",
+    "dev": "node_modules/.bin/webpack-dev-server --port 8080",
     "build": "node_modules/.bin/webpack --colors",
     "lint": "./node_modules/.bin/eslint --ext .tsx --ext .ts apps components hooks store utils"
   }

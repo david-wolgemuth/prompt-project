@@ -50,6 +50,63 @@ def feedback_request_factory(essay: Essay, assign=False):
 	return feedback_request
 
 
+class AcceptanceTestCase(TestCase):
+	"""
+	Tests the main "Project Tasks"
+		(obviously not running selenium or anything,
+		so actually writing these tests may or not prove valuable)
+		but the backend should still keep these business rules in mind
+
+	---
+	EDIT:  deciding to use this as my "QA Checklist"
+
+	"""
+	def test_can_create_comments(self):
+		"""
+		- Comments can be any text.
+		"""
+		pass
+
+	def test_only_one_editor_can_pick_up_feedback_at_a_time(self):
+		"""
+		only one editor can "pick up" feedback on an essay at a time
+		regardless of
+			the number of users the system has
+			and the timing with which they access it
+		"""
+		pass
+
+	def test_picked_up_feed_back_not_visible_on_other_editors(self):
+		"""
+		When an editor has "picked up" feedback on an essay,
+			it should not be visible to other editors.
+
+		When feedback on an essay has been returned,
+			the essay should no longer be visible to anyone.
+
+		(This means "picked up feedback" and "returned feedback" are different states.)
+		"""
+		pass
+
+	def test_an_editor_cannot_view_other_essays_to_review_having_begun_an_essay(self):
+		"""
+		- When an editor is providing feedback on an essay,
+			if the editor returns to their essay list (or refreshes it),
+			they should not see other essays;
+			they should only have the option to go back to the feedback screen.
+		"""
+		pass
+
+	def test_feedback_should_show_feedback_history_and_provide_a_means_of_returning_feedback(self):
+		"""
+		- The feedback interface should show all the completed feedback
+			on all previous versions of the current essay,
+			the current essay, a textbox where feedback can be provided,
+			and a means of returning the feedback to the customer.
+		"""
+		pass
+
+
 class AuthenticationTestCase(TestCase):
 	""" Test user authentication: login and logout. """
 

@@ -4,6 +4,7 @@ import { Urls } from 'store/urls'
 import { User } from './userTypes'
 import { setActiveUser } from './userSlice'
 
+
 export const loginUser = ({ username, password }: { username: string; password: string }) => async (
   dispatch: Dispatch,
 ) => {

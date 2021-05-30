@@ -4,8 +4,9 @@ import { Provider } from 'react-redux'
 import store, { useReduxDispatch } from 'store/store'
 import 'style/global.scss'
 import 'style/antd/customAntd.less'
-import { Layout } from 'antd'
-import { EssayList } from 'components/feedback/EssayList'
+import { Layout } from 'antd';
+import { EssayList } from 'components/feedback/EssayList';
+import { FeedbackRequest } from 'components/feedback/FeedbackRequest';
 import { Route, Router, Switch } from 'react-router-dom'
 import { createHashHistory } from 'history'
 import { logoutUser } from 'store/user/userThunks'
@@ -47,6 +48,7 @@ const App = () => {
         <Router history={history}>
           <Switch>
             <Route path="/" exact component={EssayList} />
+            <Route path="/feedback_requests/:feedbackRequestPk" component={FeedbackRequest} />
           </Switch>
         </Router>
       </Layout.Content>

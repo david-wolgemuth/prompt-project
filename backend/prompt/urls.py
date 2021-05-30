@@ -18,10 +18,11 @@ from django.urls import path
 
 from rest_framework.routers import SimpleRouter
 
-from project.views import FeedbackRequestViewSet, HomeView, LoginView, LogoutView, PlatformView
+from project.views import FeedbackRequestViewSet, HomeView, LoginView, LogoutView, PlatformView, UsersViewSet
 
 router = SimpleRouter()
 router.register('api/feedback-request', FeedbackRequestViewSet, basename='feedback-request')
+router.register('api/users', UsersViewSet, basename='users')
 
 urlpatterns = router.urls + [
 	path('admin/', admin.site.urls),

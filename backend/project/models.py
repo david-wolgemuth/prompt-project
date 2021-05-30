@@ -58,6 +58,12 @@ class FeedbackRequest(models.Model):
 		help_text='The essay being edited as part of the feedback request. For simplicity, we assume that a feedback' +
 		' request consists of only one essay.'
 	)
+	active_editor = models.OneToOneField(
+		'project.User',
+		related_name='active_feedback_request',
+		on_delete=models.SET_NULL,
+		null=True,
+	)
 	assigned_editors = models.ManyToManyField('project.User', related_name='assigned_feedback_requests')
 	edited = models.BooleanField(
 		default=False,
@@ -66,3 +72,19 @@ class FeedbackRequest(models.Model):
 		' how it should be updated in the context of your work.'
 	)
 	deadline = models.DateTimeField()
+
+
+class FeedbackRequestComment(models.Model):
+	""" A comment on a current essay revision """
+	feedback_request = models.OneToOneField(
+		'project.FeedbackRequest',
+		on_delete=models.CASCADE,
+		related_name='comment',
+		help_text=''
+	)
+	editor = models.ForeignKey(
+		'project.User',
+		on_delete=models.PROTECT,
+		related_name='feedback_request_comments',
+	)
+	content = models.TextField()
