@@ -65,12 +65,6 @@ class FeedbackRequest(models.Model):
 		null=True,
 	)
 	assigned_editors = models.ManyToManyField('project.User', related_name='assigned_feedback_requests')
-	edited = models.BooleanField(
-		default=False,
-		help_text='If True, the request has been edited. Otherwise,' +
-		' the request is pending being edited. You will want to consider whether this field is needed and' +
-		' how it should be updated in the context of your work.'
-	)
 	deadline = models.DateTimeField()
 
 

@@ -9,7 +9,6 @@ export type Essay = {
 export type FeedbackRequest = {
   pk: number
   essay: number
-  edited: boolean
   deadline: string
 }
 

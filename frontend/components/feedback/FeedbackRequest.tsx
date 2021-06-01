@@ -57,7 +57,7 @@ export const FeedbackRequest = () => {
   }
 
   const renderEssayRevision = (feedbackRequest) => (
-    <Collapse.Panel header={feedbackRequest.essay.name} key="1">
+    <Collapse.Panel header={feedbackRequest.essay.name} key={feedbackRequest.id}>
       <Row>
         <Col span={12}>
           <Card>
@@ -83,19 +83,13 @@ export const FeedbackRequest = () => {
     )
   }
 
-  const lastestRequest = activeFeedbackRequestHistory[0];
-  let requestHistory;
-  if (lastestRequest.comment) {
-    // Already submitted feedback
-    requestHistory = activeFeedbackRequestHistory.slice(0);
-  } else {
-    requestHistory = activeFeedbackRequestHistory.slice(1);
-  }
-
+  const latestRequest = activeFeedbackRequestHistory[activeFeedbackRequestHistory.length - 1];
+  // if already commented, show as comment
+  const requestHistory = latestRequest.comment ? activeFeedbackRequestHistory : activeFeedbackRequestHistory.slice(0, activeFeedbackRequestHistory.length - 1);
 
   return (
     <>
-      <PageHeader ghost={false} title={lastestRequest.essay.name} extra={[<Button key="submit-button" type="primary" onClick={onClickSubmit}>Submit Feedback</Button>]} />
+      <PageHeader ghost={false} title={latestRequest.essay.name} extra={[<Button key="submit-button" type="primary" onClick={onClickSubmit}>Submit Feedback</Button>]} />
       <Layout>
         <Layout.Content style={{padding: '50px'}}>
           <Card>
@@ -108,7 +102,7 @@ export const FeedbackRequest = () => {
           </Card>
         </Layout.Content>
         <Layout.Content style={{padding: '50px'}}>
-          {lastestRequest.comment ?(
+          {latestRequest.comment ?(
             <Empty description="Already submitted feedback.">
                 <a
                   href={`#`}
@@ -119,7 +113,7 @@ export const FeedbackRequest = () => {
               <Col span={12}>
                 <Card>
                   <h3>Essay</h3>
-                  {lastestRequest.essay.content}
+                  {latestRequest.essay.content}
                 </Card>
               </Col>
               <Col span={12}>

@@ -50,6 +50,8 @@ class FeedbackRequestViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 			else:
 				break
 
+		request_history.reverse()  # order by created at ASC
+
 		return Response(FeedbackRequestSerializer(request_history, many=True).data)
 
 	@action(detail=True, methods=['put'])
