@@ -29,7 +29,7 @@ class FeedbackRequestViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 		return super().get_serializer_class()
 
 	def get_queryset(self):
-		return FeedbackRequestManager.query_for_user(self.request.user, include_fulfilled=False).select_related('essay')
+		return FeedbackRequestManager.query_for_user(self.request.user, include_fulfilled=False).select_related('essay', 'comment')
 
 	@action(detail=True, methods=['get'])
 	def history(self, request, pk: int = None):
@@ -38,7 +38,6 @@ class FeedbackRequestViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 			I'm quite frustrated at the models, and their relationships.
 				(likely I don't understand the original devs' intent...)
 			but don't want to spend a bunch of time ripping
-			up a codebase that I'll never see again
 		"""
 		feedback_request = FeedbackRequest.objects.get(pk=pk)
 		request_history = []
